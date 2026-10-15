@@ -35,7 +35,7 @@ import org.eclipse.terminal.control.ITerminalViewControl;
  * instance.
  *
  * Clients can get terminal connector instances from the
- * {@link TerminalConnectorExtension} class, or from
+ * {@link TerminalConnectors} class, or from
  * {@link ITerminalViewControl#getTerminalConnector()} when running inside an
  * active terminal widget.
  *
