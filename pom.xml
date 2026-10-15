@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.eclipse.terminal</groupId>
+  <groupId>org.netxms</groupId>
   <artifactId>swt-terminal</artifactId>
-  <version>1.1.200-SNAPSHOT</version>
+  <version>1.1.200</version>
   <packaging>jar</packaging>
   <name>Eclipse Terminal Control (plain SWT/JFace fork)</name>
   <description>Fork of org.eclipse.terminal.control for use without OSGi and the Eclipse workbench</description>
