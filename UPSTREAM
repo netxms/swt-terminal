@@ -1,0 +1,4 @@
+Upstream: https://github.com/eclipse-platform/eclipse.platform
+Path: terminal/bundles/org.eclipse.terminal.control
+Commit: 2ba57cde539f14bc35bc434d96a265bb339b8cf2
+Date: 2025-10-15

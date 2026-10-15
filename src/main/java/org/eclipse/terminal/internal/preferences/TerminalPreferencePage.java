@@ -1,0 +1,81 @@
+/*******************************************************************************
+ * Copyright (c) 2003, 2018 Wind River Systems, Inc. and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Initial Contributors:
+ * The following Wind River employees contributed to the Terminal component
+ * that contains this file: Chris Thew, Fran Litterio, Stephen Lamb,
+ * Helmut Haigermoser and Ted Williams.
+ *
+ * Contributors:
+ * Michael Scharf (Wind River) - split into core, view and connector plugins
+ * Martin Oberhuber (Wind River) - fixed copyright headers and beautified
+ * Martin Oberhuber (Wind River) - [378691][api] push Preferences into the Widget
+ *******************************************************************************/
+package org.eclipse.terminal.internal.preferences;
+
+import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.IntegerFieldEditor;
+import org.eclipse.terminal.internal.control.impl.TerminalMessages;
+import org.eclipse.terminal.control.TerminalPreferences;
+
+/**
+ * Terminal Preference Page.
+ *
+ * @noextend This class is not intended to be subclassed by clients.
+ * @noinstantiate This class is not intended to be instantiated by clients.
+ * @noreference This class is not intended to be referenced by clients.
+ */
+public class TerminalPreferencePage extends FieldEditorPreferencePage {
+
+	private TerminalColorsFieldEditor terminalColorsFieldEditor;
+
+	public TerminalPreferencePage() {
+		super(GRID);
+	}
+
+	@Override
+	protected void createFieldEditors() {
+		setupPage();
+	}
+
+	protected void setupPage() {
+		setupData();
+		setupEditors();
+	}
+
+	protected void setupData() {
+		IPreferenceStore preferenceStore = TerminalPreferences.getDefault();
+		setPreferenceStore(preferenceStore);
+	}
+
+	protected void setupEditors() {
+		addField(new BooleanFieldEditor(ITerminalConstants.PREF_RESTORE_TERMINALS, TerminalMessages.RESTORE_TERMINALS,
+				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(ITerminalConstants.PREF_INVERT_COLORS, TerminalMessages.INVERT_COLORS,
+				getFieldEditorParent()));
+
+		addField(new IntegerFieldEditor(ITerminalConstants.PREF_BUFFERLINES, TerminalMessages.BUFFERLINES,
+				getFieldEditorParent()));
+
+		terminalColorsFieldEditor = new TerminalColorsFieldEditor(getFieldEditorParent());
+		addField(terminalColorsFieldEditor);
+
+	}
+
+	@Override
+	public void dispose() {
+		if (terminalColorsFieldEditor != null) {
+			terminalColorsFieldEditor.dispose();
+		}
+
+		super.dispose();
+	}
+}
