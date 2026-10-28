@@ -19,7 +19,10 @@ Keep that list current when making further de-Eclipse-ification changes.
 mvn package                      # compile + jar (no unit tests exist)
 mvn -o package                   # offline, once dependencies are cached
 mvn package -Dswt.artifact=org.eclipse.swt.win32.win32.x86_64   # other SWT platform fragment
+mvn -Pcentral deploy             # sign and upload to central.sonatype.com (server id `central` in settings.xml)
 ```
+
+Central deployments are uploaded with `autoPublish=false`: release them manually in the Central Portal.
 
 There is no test suite. `src/test/java` contains only a runnable demo (`TerminalDemo` plus a
 `LoopbackConnector` that echoes input). To run it:

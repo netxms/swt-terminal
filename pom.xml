@@ -9,6 +9,39 @@
   <packaging>jar</packaging>
   <name>Eclipse Terminal Control (plain SWT/JFace fork)</name>
   <description>Fork of org.eclipse.terminal.control for use without OSGi and the Eclipse workbench</description>
+  <url>https://github.com/netxms/swt-terminal</url>
+
+  <licenses>
+    <license>
+      <name>Eclipse Public License 2.0</name>
+      <url>https://www.eclipse.org/legal/epl-2.0/</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/netxms/swt-terminal</connection>
+    <developerConnection>scm:git:ssh://github.com/netxms/swt-terminal.git</developerConnection>
+    <url>https://github.com/netxms/swt-terminal</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>alex.kirhenshtein</id>
+      <name>Alex Kirhenshtein</name>
+      <email>alk@netxms.org</email>
+      <organization>Raden Solutions</organization>
+      <organizationUrl>https://radensolutions.com</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>Europe/Riga</timezone>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/netxms/swt-terminal/issues</url>
+  </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,6 +111,47 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>central</id>
+      <distributionManagement>
+        <repository>
+          <id>central</id>
+          <url>https://central.sonatype.com/api/v1/publisher</url>
+        </repository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.9.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>false</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>
